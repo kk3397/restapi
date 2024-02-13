@@ -26,7 +26,7 @@ def area_tri():
 
         return e.args[0]
 
-    tri_area = equations.area_tri(length, width)
+    tri_area = equations.trian_area(length, width)
 
     if 'text/html' in request.headers.get('Accept', '*/*'):
         response.content_type = 'text/html'
@@ -36,6 +36,31 @@ def area_tri():
     return dict(length=length, width=width, area=tri_area, service=request.path)
 
 
+@route('/area/rec')
+def area_rec():
+    response.set_header('Vary', 'Accept')
+
+    pprint(dict(request.query))
+
+    try:
+
+        length = int(request.query.get('length', '0'))
+        width = int(request.query.get('width', '0'))
+
+    except ValueError as e:
+
+        return e.args[0]
+
+    rec_area = equations.rect_area(length, width)
+
+    if 'text/html' in request.headers.get('Accept', '*/*'):
+        response.content_type = 'text/html'
+
+        return f'<p>The length is <em>{length}</em> and the width is <em> {width}</em>. The area of the triangle is <em>{rec_area}</em> </p>'
+
+    return dict(length=length, width=width, area=rec_area, service=request.path)
+
+
 @route('/perm/tri')
 def tri_perm():
     response.set_header('Vary', 'Accept')
@@ -43,23 +68,21 @@ def tri_perm():
 
     try:
 
-        side1 = int(request.query.get('side 1', '0'))
-        side2 = int(request.query.get('side 2', '0'))
-        side3 = int(request.query.get("side 3", '0'))
+        length = int(request.query.get('length', '0'))
+        width = int(request.query.get('width', '0'))
+        height = int(request.query.get('height', '0'))
 
     except ValueError as e:
 
         return e.args[0]
 
-    tri_perimeter = equations.perm_tri(side1, side2, side3)
-
+    t_perimeter = equations.perm_tri(length, width, height)
     if 'text/html' in request.headers.get('Accept', '*/*'):
         response.content_type = 'text/html'
 
-        return (f'<p>Side 1 is <em>{side1}</em> and the side 2 is <em> {side2}</em> and the last side is<em{side3}</em'
-                f'>. The perimeter of the triangle is <em>{tri_perimeter}</em> </p>')
+        return f'<p>The side1 is <em>{length}</em> and the side2 is <em> {width}</em> and side 3 is {height}</em>. The area of the triangle is <em>{t_perimeter}</em> </p>'
 
-    return dict(side1=side1, side2=side2, side3=side3, perimeter=tri_perimeter, service=request.path)
+    return dict(length=length, width=width, height=height,  perimeter=t_perimeter, service=request.path)
 
 
 @route('/perm/rec')
@@ -77,7 +100,7 @@ def rec_perm():
 
         return e.args[0]
 
-    rec_perimeter = equations.perim_rec(length, width)
+    rec_perimeter = equations.perm_rec(length, width)
 
     if 'text/html' in request.headers.get('Accept', '*/*'):
         response.content_type = 'text/html'
