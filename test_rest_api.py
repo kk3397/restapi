@@ -19,3 +19,5 @@ def test_rec_area():
 def test_rec_perm():
     assert equations.perm_rec(15, 0, ) == 30
     assert equations.perm_rec(10, 50) == 120
+    assert equations.perm_rec(0, 50) == 100
+
