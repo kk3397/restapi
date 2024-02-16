@@ -27,9 +27,11 @@ This api is to test interaction between the user and browser with the use of spe
 | HTTP Verbs | Endpoints | Action |
 | --- | --- | --- |
 | POST | / | A simple welcome screen is displayed
-| POST | /area/rec | Gets the area of a rectangle with parameters width and length |
-| POST | /area/tri | Gets the area of a triangle with parameters width and length |
-| POST | /perm/rec | Gets the perimeter of a rectangle with parameters width and length |
+| POST | /area/rec | Calculates the area of a rectangle with parameters width and length |
+| POST | /area/tri | Calculates the area of a triangle with parameters width and length |
+| POST | /perm/rec | Calculates the perimeter of a rectangle with parameters width and length |
+| POST | /perm/tri | Calculates the perimeter of a triangle with parameters width, length, and height |
+
 ### Used Technologies
 
 Docker https://www.docker.com/
